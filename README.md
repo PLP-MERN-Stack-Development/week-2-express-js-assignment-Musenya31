@@ -1,63 +1,185 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19789958&assignment_repo_type=AssignmentRepo)
-# Express.js RESTful API Assignment
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
 
-## Assignment Overview
+---
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+### ✅ `README.md`
 
-## Getting Started
+````markdown
+# 🛍️ Product RESTful API
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
+This is a simple RESTful API built using **Express.js** that allows you to manage products. It supports full CRUD operations, authentication using an API key, logging middleware, and extra features like search, filtering, pagination, and statistics.
 
-## Files Included
+---
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+## 🚀 Features
 
-## Requirements
+- Create, read, update, and delete products
+- Middleware for:
+  - Request logging
+  - Authentication using an API key
+  - Product data validation
+- Global error handling
+- Search by product name
+- Filter by category
+- Paginate product listings
+- Product statistics by category
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+---
 
-## API Endpoints
+## ⚙️ Setup Instructions
 
-The API will have the following endpoints:
+### 1. Clone the Repository
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+```bash
+git clone <your-repository-url>
+cd <your-repository-folder>
+````
 
-## Submission
+### 2. Install Dependencies
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+```bash
+npm install
+```
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+### 3. Configure Environment Variables
 
-## Resources
+Create a `.env` file based on the `.env.example` file:
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+```bash
+cp .env.example .env
+```
+
+Edit `.env` to include your preferred values:
+
+```env
+PORT=3000
+API_KEY=my-secret-key
+```
+
+---
+
+## ▶️ Run the Server
+
+### Development Mode (with live reload)
+
+```bash
+npm run dev
+```
+
+### Production Mode
+
+```bash
+npm start
+```
+
+---
+
+## 🔐 Authentication
+
+All **POST**, **PUT**, and **DELETE** requests require a valid API key.
+
+Include this header in your requests:
+
+```
+x-api-key: my-secret-key
+```
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint              | Description                                                   |
+| ------ | --------------------- | ------------------------------------------------------------- |
+| GET    | `/`                   | Welcome route                                                 |
+| GET    | `/api/products`       | Get all products (supports filtering, pagination, and search) |
+| GET    | `/api/products/:id`   | Get a specific product by ID                                  |
+| POST   | `/api/products`       | Create a new product                                          |
+| PUT    | `/api/products/:id`   | Update an existing product                                    |
+| DELETE | `/api/products/:id`   | Delete a product                                              |
+| GET    | `/api/products/stats` | Get product statistics                                        |
+
+---
+
+## 🔍 Query Parameters
+
+### Filter by Category
+
+```
+GET /api/products?category=electronics
+```
+
+### Search by Name
+
+```
+GET /api/products?search=laptop
+```
+
+### Pagination
+
+```
+GET /api/products?page=1&limit=2
+```
+
+---
+
+## 🧪 Sample Request and Response
+
+### POST `/api/products`
+
+**Headers:**
+
+```http
+x-api-key: my-secret-key
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+  "name": "Blender",
+  "description": "Electric blender with glass jar",
+  "price": 75,
+  "category": "kitchen",
+  "inStock": true
+}
+```
+
+**Response:**
+
+```json
+{
+  "id": "generated-uuid",
+  "name": "Blender",
+  "description": "Electric blender with glass jar",
+  "price": 75,
+  "category": "kitchen",
+  "inStock": true
+}
+```
+
+---
+
+## 🧠 Technologies Used
+
+* Node.js
+* Express.js
+* UUID
+* dotenv
+* body-parser
+
+---
+
+## 📁 Folder Structure
+
+```
+week2-app/
+├── server.js
+├── .env.example
+├── README.md
+├── routes/
+│   └── products.js
+
+```
+
+---
